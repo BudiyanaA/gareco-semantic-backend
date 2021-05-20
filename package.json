@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon src/index.js",
+    "dev": "BASE_URL_FUSEKI=https://gareco-fuseki-service.herokuapp.com nodemon src/index.js",
     "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,9 +19,11 @@
   },
   "homepage": "https://github.com/BudiyanaA/gareco-semantic-backend#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "qs": "^6.7.0"
   }
 }

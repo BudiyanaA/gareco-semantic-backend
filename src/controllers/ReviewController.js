@@ -17,13 +17,25 @@ module.exports = {
 
             reviews = reviews.bindings.map((review) => ReviewFormatter(review));
 
-            return res.status(200).json({
-                success: true,
-                status: 200,
-                data: reviews,
-                message: 'Data semua review berhasil didapatkan'
-            });
+            if (req.params.id) {
+                let review = reviews.filter((review) => { return review.uri.substring(19) == req.params.id });
+                
+                return res.status(200).json({
+                    success: true,
+                    status: 200,
+                    data: review[0],
+                    message: review.length ? 'Data review berhasil didapatkan' : 'Data review tidak ditemukan'
+                });
 
+            } else {
+                return res.status(200).json({
+                    success: true,
+                    status: 200,
+                    data: reviews,
+                    message: 'Data semua review berhasil didapatkan'
+                });
+            }
+            
         } catch (err) {
             return res.status(200).json({
                 success: false,

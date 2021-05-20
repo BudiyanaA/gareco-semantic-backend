@@ -8,21 +8,22 @@ const headers = {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 }
 
-exports.getAllReviews = async() => {
+exports.getAllReviews = async(param) => {
     const queryData = {
         query: `PREFIX data:<http://example.com/>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-        SELECT ?title ?description ?cover ?ign ?gamespot ?metacritic
+        SELECT ?uri ?title ?description ?cover ?ign ?gamespot ?metacritic
 
         WHERE {
-            ?sub rdf:type data:review.
-            OPTIONAL {?sub data:title ?title.}
-            OPTIONAL {?sub data:description ?description.}
-            OPTIONAL {?sub data:cover ?cover.}
-            OPTIONAL {?sub data:ign ?ign.}
-            OPTIONAL {?sub data:gamespot ?gamespot.}
-            OPTIONAL {?sub data:metacritic ?metacritic.}
+            ?uri rdf:type data:review.
+            OPTIONAL {?uri data:title ?title.}
+            OPTIONAL {?uri data:description ?description.}
+            OPTIONAL {?uri data:cover ?cover.}
+            OPTIONAL {?uri data:ign ?ign.}
+            OPTIONAL {?uri data:gamespot ?gamespot.}
+            OPTIONAL {?uri data:metacritic ?metacritic.}
+            FILTER(regex(str(?uri), "${param.uri ? param.uri : ''}", "i"))
         }`
     }
 

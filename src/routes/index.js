@@ -11,5 +11,6 @@ router.get('/', (req, res) => {
 })
 
 router.get('/reviews', getReviews)
+router.get('/reviews/:id', getReviews)
 
 module.exports = router;

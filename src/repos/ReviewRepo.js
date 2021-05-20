@@ -24,6 +24,8 @@ exports.getAllReviews = async(param) => {
             OPTIONAL {?uri data:gamespot ?gamespot.}
             OPTIONAL {?uri data:metacritic ?metacritic.}
             FILTER(regex(str(?uri), "${param.uri ? param.uri : ''}", "i"))
+            FILTER(regex(str(?title), "${param.title ? param.title : ''}", "i"))
+            FILTER(regex(str(?description), "${param.description ? param.description : ''}", "i"))
         }`
     }
 

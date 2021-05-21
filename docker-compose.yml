@@ -1,0 +1,19 @@
+version: "3.6"
+services: 
+    semantic-backend:
+        container_name: semantic-backend
+        restart: always
+        build: ./
+        ports: 
+            - "3000:3000"
+        volumes:
+            - .:/app
+            - /app/node_modules
+        env_file: .env
+        networks:
+            - semantic-backend-network
+
+networks:
+    semantic-backend-network:
+        name: semantic-backend-network
+    
